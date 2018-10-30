@@ -1,0 +1,7 @@
+
+extern void IIC_SLAVE_TEST_V101_INITIAL();
+extern void IIC_SLAVE_TEST_V101();
+
+extern unsigned char IIC_USER_DATA[];
+extern unsigned char IIC_GlobalOption[];
+

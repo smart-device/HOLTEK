@@ -1,0 +1,18 @@
+// Uploaded by http://smart-device.ir
+
+//****************************************************** 
+//***** MAIN PROGRAM EXTERNAL REFERENCE FOR C CODE    **
+//****************************************************** 
+extern  void    LOAD_TKS_GLOBE_VARIES();        //;load TKS varies
+extern  void    LOAD_HXT_REFERENCE();           //;load HXT varies
+
+
+
+
+
+
+
+
+
+
+

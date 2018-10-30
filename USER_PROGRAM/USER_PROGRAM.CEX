@@ -1,0 +1,18 @@
+
+//***************************************************
+//***** USER PROGRAM EXTERNAL REFERENCE FOR C CODE **
+//***************************************************
+extern  void    USER_PROGRAM_INITIAL();      
+extern  void    USER_PROGRAM();              
+
+
+
+
+
+
+
+
+
+
+
+

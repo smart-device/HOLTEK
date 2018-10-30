@@ -1,0 +1,1959 @@
+				;file C:\DATA\EDDY\F\Library\Library最新\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\MAIN_PROGRAM_V102\MAIN_PROGRAM_V102.asm
+				;1	
+				;2	message '****************************************************************'
+				;3	message '*PROJECT NAME :MAIN PROGRAM V102                               *'
+				;4	message '*     VERSION :V102                                            *'
+				;5	message '* ICE VERSION :                                                *'
+				;6	message '*      DATE   :20150317                                        *'
+				;7	message '*      REMARK :V102 modify ESCpowerIDcheck2,PBP                *'
+				;8	message '****************************************************************'
+				;9	                ;=INCLUDE REFERENCE FILE
+				;10	                INCLUDE MAIN_PROGRAM_V102.INC
+				;11	
+				;12	                ;-PUBLIC LABEL
+				;13	                PUBLIC  _LOAD_TKS_GLOBE_VARIES
+				;14	                PUBLIC  _LOAD_HXT_REFERENCE
+				;15	
+				;16	CALL_   MACRO   FUNCTION
+				;17	        ifdef   FUNCTION
+				;18	                ifdef   PBP
+				;19	                MOV     A,bank FUNCTION
+				;20	                MOV     PBP,A
+				;21	                endif
+				;22	                CALL    FUNCTION
+				;23	        endif
+				;24	                ENDM
+				;25	
+				;26	EXTEND_FUNCTION_INITIAL MACRO
+				;27	                CALL_   EXTEND_FUNCTION_1A_INITIAL
+				;28	                CALL_   EXTEND_FUNCTION_1B_INITIAL
+				;29	                CALL_   EXTEND_FUNCTION_1C_INITIAL
+				;30	                CALL_   EXTEND_FUNCTION_1D_INITIAL
+				;31	                CALL_   EXTEND_FUNCTION_1E_INITIAL
+				;32	                CALL_   EXTEND_FUNCTION_1F_INITIAL
+				;33	                CALL_   EXTEND_FUNCTION_1G_INITIAL
+				;34	                CALL_   EXTEND_FUNCTION_1H_INITIAL
+				;35	
+				;36	                CALL_   EXTEND_FUNCTION_2A_INITIAL
+				;37	                CALL_   EXTEND_FUNCTION_2B_INITIAL
+				;38	                CALL_   EXTEND_FUNCTION_2C_INITIAL
+				;39	                CALL_   EXTEND_FUNCTION_2D_INITIAL
+				;40	                CALL_   EXTEND_FUNCTION_2E_INITIAL
+				;41	                CALL_   EXTEND_FUNCTION_2F_INITIAL
+				;42	                CALL_   EXTEND_FUNCTION_2G_INITIAL
+				;43	                CALL_   EXTEND_FUNCTION_2H_INITIAL
+				;44	                ENDM
+				;45	
+				;46	EXTEND_FUNCTION MACRO
+				;47	                CALL_   EXTEND_FUNCTION_1A
+				;48	                CALL_   EXTEND_FUNCTION_1B
+				;49	                CALL_   EXTEND_FUNCTION_1C
+				;50	                CALL_   EXTEND_FUNCTION_1D
+				;51	                CALL_   EXTEND_FUNCTION_1E
+				;52	                CALL_   EXTEND_FUNCTION_1F
+				;53	                CALL_   EXTEND_FUNCTION_1G
+				;54	                CALL_   EXTEND_FUNCTION_1H
+				;55	
+				;56	                CALL_   EXTEND_FUNCTION_2A
+				;57	                CALL_   EXTEND_FUNCTION_2B
+				;58	                CALL_   EXTEND_FUNCTION_2C
+				;59	                CALL_   EXTEND_FUNCTION_2D
+				;60	                CALL_   EXTEND_FUNCTION_2E
+				;61	                CALL_   EXTEND_FUNCTION_2F
+				;62	                CALL_   EXTEND_FUNCTION_2G
+				;63	                CALL_   EXTEND_FUNCTION_2H
+				;64	                ENDM
+				;65	                ;==============
+				;66	                ;=DATA SETCTION
+				;67	                ;==============
+				;68	MAIN_DATA       .SECTION          'DATA'
+				;69	
+				;70	ifndef  ESCpowerIDcheck
+				;71	POR_ID          DB      2 DUP(?)
+				;72	endif
+				;73	
+				;74	
+				;75	
+				;76	                ;==============
+				;77	                ;=CODE SETCTION
+				;78	                ;==============
+				;79	PROGRAM_ENTRY   .SECTION  AT 000H 'CODE'
+				;80	        ifdef   PBP
+				;81	                CLR     PBP
+				;82	                ifndef  ESCpowerIDcheck
+				;83	                MOV     A,042H      ;ASCII = B
+				;84	                endif
+				;85	        else
+				;86	                ;----------------
+				;87	                ;-SET POR ID 1---
+				;88	                ;----------------
+				;89	                ifndef  ESCpowerIDcheck
+				;90	                MOV     A,042H      ;ASCII = B
+				PROGRAM_ENTRY:
+				include BS86C16A-3.inc
+0000	0F42	mov     a, 42H
+				;91	                SNZ     TO
+0001	3A8A	snz     TO
+				;92	                MOV     POR_ID[0],A
+0002	40AE	mov     POR_ID, a
+				;93	                endif
+				;94	        endif
+				;95	                JMP     PROGRAM_RESET
+0003	2810	jmp     PROGRAM_RESET
+				;96	
+				;97	                ;==============
+				;98	                ;=MAIN PROGRAM=
+				;99	                ;==============
+				;100	MAIN_PROGRAM    .SECTION          'CODE'
+				;101	
+				;102	                ;;***********************
+				;103	PROGRAM_RESET:  ;;* PROGRAM ENTRY *******
+				;104	                ;;***********************
+				;105	        ifdef   PBP
+				;106	                ifndef  ESCpowerIDcheck
+				;107	                SNZ     TO
+				;108	                MOV     POR_ID[0],A
+				;109	                endif
+				;110	        endif
+				;111	                ;----------------
+				;112	                ;-SET POR ID 2---
+				;113	                ;----------------
+				;114	        ifndef  ESCpowerIDcheck
+				;115	                MOV     A,053H      ;ASCII = S
+				PROGRAM_RESET:
+				MAIN_PROGRAM:
+0010	0F53	mov     a, 53H
+				;116	                MOV     POR_ID[1],A
+0011	40AF	mov     POR_ID[1], a
+				;117	        endif
+				;118	
+				;119	
+				;120	                ;---------------------
+				;121	                ;-MCU HARDWARE INITIAL
+				;122	                ;---------------------
+				;123	                MCU_HARDWARE_INITIAL
+0012	0F20	mov     a, 20H
+0013	00BD	mov     CTRL, a
+0014	0F03	mov     a, 3H
+0015	008B	mov     SMOD, a
+0016	0F52	mov     a, 52H
+0017	009A	mov     WDTC, a
+0018	1F31	clr     ACERL
+0019	0F60	mov     a, 60H
+001A	00AF	mov     ADCR0, a
+001B	1F30	clr     ADCR1
+001C	0F03	mov     a, 3H
+001D	0084	mov     MP1H, a
+001E	0F80	mov     a, 80H
+001F	2043	call    CLEAR_RAM
+0020	0F02	mov     a, 2H
+0021	0084	mov     MP1H, a
+0022	0F80	mov     a, 80H
+0023	2043	call    CLEAR_RAM
+0024	0F01	mov     a, 1H
+0025	0084	mov     MP1H, a
+0026	0F80	mov     a, 80H
+0027	2043	call    CLEAR_RAM
+0028	1F04	clr     MP1H
+0029	0F80	mov     a, 80H
+002A	2043	call    CLEAR_RAM
+				;124	
+				;125	                ;------------------------------
+				;126	                ;-LOAD LIBRARY OPTION/THRESHOLD
+				;127	                ;------------------------------
+				;128	                CALL    _LOAD_TKS_GLOBE_VARIES
+002B	2050	call    _LOAD_HXT_REFERENCE
+				;129	
+				;130	                ;------------------------
+				;131	                ;-EXTEND FUNCTION INITIAL
+				;132	                ;------------------------
+				;133	                EXTEND_FUNCTION_INITIAL
+002C	211C	call    L011C
+002D	2005	call    _USER_PROGRAM_INITIAL
+				;134	
+				;135	                ;;-----------------------
+				;136	MAIN_LOOP:      ;;- MAIN PROGRAM LOOP ---
+				;137	                ;;-----------------------
+				;138	                CLR     WDT
+				MAIN_LOOP:
+002E	0001	clr     wdt
+				;139	                CLR     WDT1
+002F	0001	clr     wdt
+				;140	                CLR     WDT2
+0030	0005	clr     wdt2
+				;141	
+				;142	                ;----------------
+				;143	                ;-CHECK POR ID --
+				;144	                ;----------------
+				;145	        ifndef  ESCpowerIDcheck
+				;146	                MOV     A,042H
+0031	0F42	mov     a, 42H
+				;147	                XORM    A,POR_ID[0]
+0032	44AE	xorm    a, POR_ID
+				;148	                MOV     A,053H
+0033	0F53	mov     a, 53H
+				;149	                SZ      Z
+0034	3D0A	sz      Z
+				;150	                XORM    A,POR_ID[1]
+0035	44AF	xorm    a, POR_ID[1]
+				;151	                SNZ     Z
+0036	390A	snz     Z
+				;152	                JMP     000H
+0037	2800	jmp     PROGRAM_ENTRY
+				;153	        endif
+				;154	                ;----------------------
+				;155	                ;-RE INITIAL SYS. CLOCK
+				;156	                ;----------------------
+				;157	                RELOAD_SYS_CLOCK
+0038	0F20	mov     a, 20H
+0039	00BD	mov     CTRL, a
+003A	0F03	mov     a, 3H
+003B	008B	mov     SMOD, a
+				;158	                EXTEND_FUNCTION
+003C	207B	call    L007B
+003D	254E	call    _USER_PROGRAM
+				;159	                ;----------------
+				;160	                ;-SET POR ID  ---
+				;161	                ;----------------
+				;162	        ifndef  ESCpowerIDcheck
+				;163	                MOV     A,042H      ;ASCII = B
+003E	0F42	mov     a, 42H
+				;164	                MOV     POR_ID[0],A
+003F	40AE	mov     POR_ID, a
+				;165	                MOV     A,053H      ;ASCII = S
+0040	0F53	mov     a, 53H
+				;166	                MOV     POR_ID[1],A
+0041	40AF	mov     POR_ID[1], a
+				;167	        endif
+				;168	
+				;169	                ;--------------------
+				;170	WDT_WAKEUP:     ;-WDT WAKEUP FUNCTION
+				;171	                ;--------------------
+				;172	                if      PowerSave==1
+				;173	                CALL_   _CHECK_KEY_WAKEUP
+				;174	                endif
+				;175	
+				;176	                ifdef   PBP
+				;177	                MOV     A,BANK MAIN_LOOP
+				;178	                MOV     PBP,A
+				;179	                endif
+				;180	                JMP     MAIN_LOOP
+				WDT_WAKEUP:
+0042	282E	jmp     MAIN_LOOP
+				;181	
+				;182	
+				;183	
+				;184	
+				;185	
+				;186	
+				;187	
+				;188	
+				;189	
+				;190	;;***********************************************************
+				;191	;;*SUB. NAME:                                               *
+				;192	;;*INPUT    :                                               *
+				;193	;;*OUTPUT   :                                               *
+				;194	;;*USED REG.:                                               *
+				;195	;;*FUNCTION :                                               *
+				;196	;;***********************************************************
+				;197	CLEAR_RAM:
+				;198	                MOV     MP1,A
+				CLEAR_RAM:
+0043	0083	mov     MP1L, a
+				;199	        ifndef  ESCpowerIDcheck
+				;200	            ifdef  BP
+				;201	                ;-CHECK BANK
+				;202	                SZ      BP
+0044	1084	sz      MP1H
+				;203	                JMP     CLR_RAM
+0045	284C	jmp     CLR_RAM
+				;204	            endif
+				;205	                ;-CHECK POR_ID RAM
+				;206	                MOV     A,OFFSET POR_ID
+0046	0FAE	mov     a, AEH
+				;207	                XOR     A,MP1
+0047	0403	xor     a, MP1L
+				;208	                MOV     A,OFFSET POR_ID+1
+0048	0FAF	mov     a, AFH
+				;209	                SNZ     Z
+0049	390A	snz     Z
+				;210	                XOR     A,MP1
+004A	0403	xor     a, MP1L
+				;211	                SNZ     Z
+004B	390A	snz     Z
+				;212	        endif
+				;213	CLR_RAM:        ;-CLEAR RAM
+				;214	                CLR     IAR1
+				CLR_RAM:
+004C	1F02	clr     [02H]
+				;215	                SIZA    MP1
+004D	1603	siza    MP1L
+				;216	                JMP     CLEAR_RAM
+004E	2843	jmp     CLEAR_RAM
+				;217	
+				;218	                RET
+004F	0003	ret
+				;219	
+				;220	
+				;221	;;***********************************************************
+				;222	;;*SUB. NAME:                                               *
+				;223	;;*INPUT    :                                               *
+				;224	;;*OUTPUT   :                                               *
+				;225	;;*USED REG.:                                               *
+				;226	;;*FUNCTION :                                               *
+				;227	;;***********************************************************
+				;228	_LOAD_TKS_GLOBE_VARIES:
+				;229	_LOAD_HXT_REFERENCE:
+				;230	                ;------------------------
+				;231	                ;-SET TKS LIBRARY OPTION-
+				;232	                ;------------------------
+				;233	                MOV     A,GlobeOptionA
+				_LOAD_HXT_REFERENCE:
+				_LOAD_TKS_GLOBE_VARIES:
+0050	0F70	mov     a, 70H
+				;234	                MOV     _GLOBE_VARIES[0],A
+0051	4080	mov     __pac[107], a
+				;235	                MOV     A,GlobeOptionB
+0052	0FF0	mov     a, F0H
+				;236	                MOV     _GLOBE_VARIES[1],A
+0053	4081	mov     __pac[108], a
+				;237	                MOV     A,GlobeOptionC
+0054	0F88	mov     a, 88H
+				;238	                MOV     _GLOBE_VARIES[2],A
+0055	4082	mov     __pac[109], a
+				;239	
+				;240	                ;--------------------------
+				;241	                ;-SET TOUCH OR IO ATTRIBUTE
+				;242	                ;--------------------------
+				;243	                MOV     A,IO_TOUCH_ATTR&0FFH
+0056	0FFF	mov     a, FFH
+				;244	                MOV     _KEY_IO_SEL[0],A
+0057	409E	mov     __pac[137], a
+				;245	                ;-IF OVER 2 TOUCH IP (8~16KEY)
+				;246	                if      TouchKeyAmount > 8
+				;247	                MOV     A,(IO_TOUCH_ATTR>>8)&0FFH
+0058	0FFF	mov     a, FFH
+				;248	                MOV     _KEY_IO_SEL[1],A
+0059	409F	mov     __pac[138], a
+				;249	                endif
+				;250	                ;-IF OVER 4 TOUCH IP (17~24KEY)
+				;251	                if      TouchKeyAmount > 16
+				;252	                MOV     A,(IO_TOUCH_ATTR>>16)&0FFH
+				;253	                MOV     _KEY_IO_SEL[2],A
+				;254	                endif
+				;255	                ;-IF OVER 6 TOUCH IP (25~32KEY)
+				;256	                if      TouchKeyAmount > 24
+				;257	                MOV     A,(IO_TOUCH_ATTR>>24)&0FFH
+				;258	                MOV     _KEY_IO_SEL[3],A
+				;259	                endif
+				;260	
+				;261	                ;------------------------
+				;262	                ;-SET TOUCH KEY THRESHOLD
+				;263	                ;------------------------
+				;264	                ;-KEY1 THRESHOLD
+				;265	                MOV     A,Key1Threshold
+005A	0F10	mov     a, 10H
+				;266	                MOV     _GLOBE_VARIES[3],A
+005B	4083	mov     __pac[110], a
+				;267	
+				;268	                if      TouchKeyAmount > 1
+				;269	                ;-KEY2 THRESHOLD
+				;270	                MOV     A,Key2Threshold
+005C	0F10	mov     a, 10H
+				;271	                MOV     _GLOBE_VARIES[4],A
+005D	4084	mov     __pac[111], a
+				;272	                endif
+				;273	
+				;274	                if      TouchKeyAmount > 2
+				;275	                ;-KEY3 THRESHOLD
+				;276	                MOV     A,Key3Threshold
+005E	0F10	mov     a, 10H
+				;277	                MOV     _GLOBE_VARIES[5],A
+005F	4085	mov     __pac[112], a
+				;278	                endif
+				;279	
+				;280	                if      TouchKeyAmount > 3
+				;281	                ;-KEY4 THRESHOLD
+				;282	                MOV     A,Key4Threshold
+0060	0F10	mov     a, 10H
+				;283	                MOV     _GLOBE_VARIES[6],A
+0061	4086	mov     __pac[113], a
+				;284	                endif
+				;285	
+				;286	                if      TouchKeyAmount > 4
+				;287	                ;-KEY5 THRESHOLD
+				;288	                MOV     A,Key5Threshold
+0062	0F10	mov     a, 10H
+				;289	                MOV     _GLOBE_VARIES[7],A
+0063	4087	mov     __pac[114], a
+				;290	                endif
+				;291	
+				;292	                if      TouchKeyAmount > 5
+				;293	                ;-KEY6 THRESHOLD
+				;294	                MOV     A,Key6Threshold
+0064	0F10	mov     a, 10H
+				;295	                MOV     _GLOBE_VARIES[8],A
+0065	4088	mov     __pac[115], a
+				;296	                endif
+				;297	
+				;298	                if      TouchKeyAmount > 6
+				;299	                ;-KEY7 THRESHOLD
+				;300	                MOV     A,Key7Threshold
+0066	0F10	mov     a, 10H
+				;301	                MOV     _GLOBE_VARIES[9],A
+0067	4089	mov     __pac[116], a
+				;302	                endif
+				;303	
+				;304	                if      TouchKeyAmount > 7
+				;305	                ;-KEY8 THRESHOLD
+				;306	                MOV     A,Key8Threshold
+0068	0F10	mov     a, 10H
+				;307	                MOV     _GLOBE_VARIES[10],A
+0069	408A	mov     __pac[117], a
+				;308	                endif
+				;309	
+				;310	                if     TouchKeyAmount > 8
+				;311	                ;-KEY9 THRESHOLD
+				;312	                MOV     A,Key9Threshold
+006A	0F10	mov     a, 10H
+				;313	                MOV     _GLOBE_VARIES[11],A
+006B	408B	mov     __pac[118], a
+				;314	                endif
+				;315	
+				;316	                if      TouchKeyAmount > 9
+				;317	                ;-KEY10 THRESHOLD
+				;318	                MOV     A,Key10Threshold
+006C	0F10	mov     a, 10H
+				;319	                MOV     _GLOBE_VARIES[12],A
+006D	408C	mov     __pac[119], a
+				;320	                endif
+				;321	
+				;322	                if      TouchKeyAmount > 10
+				;323	                ;-KEY11 THRESHOLD
+				;324	                MOV     A,Key11Threshold
+006E	0F10	mov     a, 10H
+				;325	                MOV     _GLOBE_VARIES[13],A
+006F	408D	mov     __pac[120], a
+				;326	                endif
+				;327	
+				;328	                if      TouchKeyAmount > 11
+				;329	                ;-KEY12 THRESHOLD
+				;330	                MOV     A,Key12Threshold
+0070	0F10	mov     a, 10H
+				;331	                MOV     _GLOBE_VARIES[14],A
+0071	408E	mov     __pac[121], a
+				;332	                endif
+				;333	
+				;334	                if      TouchKeyAmount > 12
+				;335	                ;-KEY13 THRESHOLD
+				;336	                MOV     A,Key13Threshold
+0072	0F10	mov     a, 10H
+				;337	                MOV     _GLOBE_VARIES[15],A
+0073	408F	mov     __pac[122], a
+				;338	                endif
+				;339	
+				;340	                if      TouchKeyAmount > 13
+				;341	                ;-KEY14 THRESHOLD
+				;342	                MOV     A,Key14Threshold
+0074	0F10	mov     a, 10H
+				;343	                MOV     _GLOBE_VARIES[16],A
+0075	4090	mov     __pac[123], a
+				;344	                endif
+				;345	
+				;346	                if      TouchKeyAmount > 14
+				;347	                ;-KEY15 THRESHOLD
+				;348	                MOV     A,Key15Threshold
+0076	0F10	mov     a, 10H
+				;349	                MOV     _GLOBE_VARIES[17],A
+0077	4091	mov     __pac[124], a
+				;350	                endif
+				;351	
+				;352	                if      TouchKeyAmount > 15
+				;353	                ;-KEY16 THRESHOLD
+				;354	                MOV     A,Key16Threshold
+0078	0F10	mov     a, 10H
+				;355	                MOV     _GLOBE_VARIES[18],A
+0079	4092	mov     __pac[125], a
+				;356	                endif
+				;357	
+				;358	                if      TouchKeyAmount > 16
+				;359	                ;-KEY17 THRESHOLD
+				;360	                MOV     A,Key17Threshold
+				;361	                MOV     _GLOBE_VARIES[19],A
+				;362	                endif
+				;363	
+				;364	                if      TouchKeyAmount > 17
+				;365	                ;-KEY18 THRESHOLD
+				;366	                MOV     A,Key18Threshold
+				;367	                MOV     _GLOBE_VARIES[20],A
+				;368	                endif
+				;369	
+				;370	                if      TouchKeyAmount > 18
+				;371	                ;-KEY19 THRESHOLD
+				;372	                MOV     A,Key19Threshold
+				;373	                MOV     _GLOBE_VARIES[21],A
+				;374	                endif
+				;375	
+				;376	                if      TouchKeyAmount > 19
+				;377	                ;-KEY20 THRESHOLD
+				;378	                MOV     A,Key20Threshold
+				;379	                MOV     _GLOBE_VARIES[22],A
+				;380	                endif
+				;381	
+				;382	                if      TouchKeyAmount > 20
+				;383	                ;-KEY17 THRESHOLD
+				;384	                MOV     A,Key21Threshold
+				;385	                MOV     _GLOBE_VARIES[23],A
+				;386	                endif
+				;387	
+				;388	                if      TouchKeyAmount > 21
+				;389	                ;-KEY18 THRESHOLD
+				;390	                MOV     A,Key22Threshold
+				;391	                MOV     _GLOBE_VARIES[24],A
+				;392	                endif
+				;393	
+				;394	                if      TouchKeyAmount > 22
+				;395	                ;-KEY19 THRESHOLD
+				;396	                MOV     A,Key23Threshold
+				;397	                MOV     _GLOBE_VARIES[25],A
+				;398	                endif
+				;399	
+				;400	                if      TouchKeyAmount > 23
+				;401	                ;-KEY20 THRESHOLD
+				;402	                MOV     A,Key24Threshold
+				;403	                MOV     _GLOBE_VARIES[26],A
+				;404	                endif
+				;405	
+				;406	                if      TouchKeyAmount > 24
+				;407	                ;-KEY17 THRESHOLD
+				;408	                MOV     A,Key25Threshold
+				;409	                MOV     _GLOBE_VARIES[27],A
+				;410	                endif
+				;411	
+				;412	                if      TouchKeyAmount > 25
+				;413	                ;-KEY18 THRESHOLD
+				;414	                MOV     A,Key26Threshold
+				;415	                MOV     _GLOBE_VARIES[28],A
+				;416	                endif
+				;417	
+				;418	                if      TouchKeyAmount > 26
+				;419	                ;-KEY19 THRESHOLD
+				;420	                MOV     A,Key27Threshold
+				;421	                MOV     _GLOBE_VARIES[29],A
+				;422	                endif
+				;423	
+				;424	                if      TouchKeyAmount > 27
+				;425	                ;-KEY20 THRESHOLD
+				;426	                MOV     A,Key28Threshold
+				;427	                MOV     _GLOBE_VARIES[30],A
+				;428	                endif
+				;429	
+				;430	                if      TouchKeyAmount > 28
+				;431	                ;-KEY29 THRESHOLD
+				;432	                MOV     A,Key29Threshold
+				;433	                MOV     _GLOBE_VARIES[31],A
+				;434	                endif
+				;435	
+				;436	                if      TouchKeyAmount > 29
+				;437	                ;-KEY30 THRESHOLD
+				;438	                MOV     A,Key30Threshold
+				;439	                MOV     _GLOBE_VARIES[32],A
+				;440	                endif
+				;441	
+				;442	                if      TouchKeyAmount > 30
+				;443	                ;-KEY31 THRESHOLD
+				;444	                MOV     A,Key31Threshold
+				;445	                MOV     _GLOBE_VARIES[33],A
+				;446	                endif
+				;447	
+				;448	                if      TouchKeyAmount > 31
+				;449	                ;-KEY32 THRESHOLD
+				;450	                MOV     A,Key32Threshold
+				;451	                MOV     _GLOBE_VARIES[34],A
+				;452	                endif
+				;453	
+				;454	
+				;455	                RET
+007A	0003	ret
+				L007B:
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+				L011C:
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+				L052E:
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+					----
+				;456	
+				;457	
+				;458	
+				;459	
+				;460	                END
+				;461	
+				;462	
+				;463	
+				;file C:\DATA\EDDY\F\Library\Library最新\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\USER_PROGRAM\USER_PROGRAM.c
+				;1		#include "USER_PROGRAM.h"
+				;2	
+				;3	//==============================================
+				;4	//**********************************************
+				;5	//==============================================
+				;6	
+				;7	#ifdef _CCV3_
+				;8		void __attribute((interrupt(0x04))) Interrupt_External(void)
+				;9	#endif
+				;10	
+				;11	/*
+				;12	#ifdef _CCV2_
+				;13		#pragma vector  Interrupt_External        @ 0x04
+				;14	#endif
+				;15	*/
+				;16	{
+				_Interrupt_External:
+				@Interrupt_External_code .SECTION 'CODE'
+0004	0004	reti
+				;17		//Insert your code here
+				;18	}
+				;19	
+				;20	//==============================================
+				;21	//**********************************************
+				;22	//==============================================
+				;23	void USER_PROGRAM_INITIAL()
+				;24	{
+				;25		//power-on initialize
+				;26	
+				;27		_pac=0;
+				_USER_PROGRAM_INITIAL:
+				_USER_PROGRAM_INITIAL:
+0005	1F15	clr     PAC
+				;28		_pa=0;
+0006	1F14	clr     PA
+0007	0003	ret
+					----
+					----
+000A	0000	nop
+000B	0000	nop
+					----
+					----
+					----
+					----
+				;29		//_pbc=0;
+				;30		//_pb=0;
+				;31	}
+				;32	
+				;33	//==============================================
+				;34	//**********************************************
+				;35	//==============================================
+				;36	void USER_PROGRAM()
+				;37	{
+				;38		//Insert your code here
+				;39		if(SCAN_CYCLEF)
+				_USER_PROGRAM:
+				_USER_PROGRAM:
+054E	472D	mov     a, __pac[152]
+054F	C0C0	lmov    _USER_PROGRAM_2, a
+0551	F940	lsnz    [02C0H].2
+0553	2D5B	jmp     _L3
+				;40		{
+				;41			if(ANY_KEY_PRESSF) _pa4=1;
+0554	F9C0	lsnz    [02C0H].3
+0556	2D59	jmp     _L5
+0557	3214	set     PA4
+0558	2D5A	jmp     _L6
+				;42			else _pa4=0;
+				_L5:
+0559	3614	clr     PA4
+				;43	
+				;44			GET_KEY_BITMAP();
+				_L6:
+055A	252E	call    L052E
+				_L3:
+055B	0003	ret
+				;45			
+				;46			//key1
+				;47			if(DATA_BUF[0]&0x01)
+				;48			{
+				;49				//key press
+				;50			}
+				;51			else
+				;52			{
+				;53				//key no press
+				;54			}
+				;55			
+				;56			//key2
+				;57			if(DATA_BUF[0]&0x02)
+				;58			{
+				;59				//key press
+				;60			}
+				;61			else
+				;62			{
+				;63				//key no press
+				;64			}
+				;65			
+				;66			
+				;67			//.
+				;68			//.
+				;69			//.
+				;70			//.
+				;71			//.
+				;72			
+				;73			//key9
+				;74			if(DATA_BUF[1]&0x01)
+				;75			{
+				;76				//key press
+				;77			}
+				;78			else
+				;79			{
+				;80				//key no press
+				;81			}
+				;82			//key10
+				;83			if(DATA_BUF[1]&0x02)
+				;84			{
+				;85				//key press
+				;86			}
+				;87			else
+				;88			{
+				;89				//key no press
+				;90			}
+				;91			
+				;92		}
+				;93	}
+				;94	
+				;95	
+				;96	
+				;97	
+				;98	
+				data .SECTION 'DATA'
+				__pa DB DUP (?) ; __pa
+				__pac DB DUP (?) ; __pac
+				POR_ID DB DUP (?) ; POR_ID
+				_USER_PROGRAM_2 DB DUP (?)

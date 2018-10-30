@@ -1,0 +1,466 @@
+
+message '****************************************************************'
+message '*PROJECT NAME :IIC_SLAVE_TEST varies define with different MCU *'
+message '*REMARK       :20141121 add BS83B08A,BS83B12A,BS83B16A         *'
+message '*REMARK       :         add BS84B08A,BS84C12A,BS84C16A,BS84D20A*'
+message '*REMARK       :         add BS82B16 ,BS82C16A,BS82D20A         *'
+message '*REMARK       :         add BS45FH21                           *'
+message '*REMARK       :         add BS66F340,BS66F350,BS66F360         *'
+message '*REMARK       :         add BS67F340,BS67F350,BS67F360         *'
+message '*REMARK       :         add BS66FV340,BS66FV350,BS66FV360      *'
+message '*REMARK       :         add BS86C16A,BS86D20                   *'
+message '*REMARK       :20150311 Fix bug Error(L1037)                   *'
+message '*REMARK       :         BS66,BS67,BS66FV MFI2E--> MF2E         *'
+message '****************************************************************'
+
+
+
+
+;==========================================================
+
+IFDEF   BS83B08A
+    #define _BS83B08A_
+ENDIF
+IFDEF   BS83B12A
+    #define _BS83B12A_
+ENDIF
+IFDEF   BS83B16A
+    #define _BS83B16A_
+ENDIF
+
+IFDEF   BS84B08A
+    #define _BS84B08A_
+ENDIF
+IFDEF   BS84C12A
+    #define _BS84C12A_
+ENDIF
+
+IFDEF   BS82B16
+    #define _BS82B16_
+ENDIF
+IFDEF   BS82C16A
+    #define _BS82C16A_
+ENDIF
+IFDEF   BS82D20A
+    #define _BS82D20A_
+ENDIF
+;................................
+IFDEF   _BS83B08A_
+    #define IIC_INT_ADDR 010H
+    #define IIC_SDA_PU  PAPU.0
+    #define IIC_SCL_PU  PAPU.2
+ENDIF
+IFDEF   _BS83B12A_
+    #define IIC_INT_ADDR 010H
+    #define IIC_SDA_PU  PAPU.0
+    #define IIC_SCL_PU  PAPU.2
+ENDIF
+IFDEF   _BS83B16A_
+    #define IIC_INT_ADDR 010H
+    #define IIC_SDA_PU  PAPU.0
+    #define IIC_SCL_PU  PAPU.2
+ENDIF
+;................................
+IFDEF   _BS84B08A_
+    #define IIC_INT_ADDR 010H
+    #define IIC_SDA_PU  PAPU.0
+    #define IIC_SCL_PU  PAPU.2
+ENDIF
+IFDEF   _BS84C12A_
+    #define IIC_INT_ADDR 010H
+    #define IIC_SDA_PU  PAPU.0
+    #define IIC_SCL_PU  PAPU.2
+ENDIF
+IFDEF   _BS84C16A_
+    #define IIC_INT_ADDR 024H
+    #define IIC_SDA_PU  PAPU.3
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+ENDIF
+IFDEF   _BS84D20A_
+    #define IIC_INT_ADDR 024H
+    #define IIC_SDA_PU  PAPU.3
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+ENDIF
+;................................
+IFDEF   _BS82B16_
+    #define IIC_INT_ADDR 010H
+    #define IIC_SDA_PU  PAPU.0
+    #define IIC_SCL_PU  PAPU.2
+ENDIF
+IFDEF   _BS82C16A_
+    #define IIC_INT_ADDR 024H
+    #define IIC_SDA_PU  PAPU.3
+    #define IIC_SCL_PU  PAPU.7
+ENDIF
+IFDEF   _BS82D20A_
+    #define IIC_INT_ADDR 024H
+    #define IIC_SDA_PU  PAPU.3
+    #define IIC_SCL_PU  PAPU.7
+ENDIF
+
+;................................
+IFDEF   _BS45FH21_
+    #define IIC_INT_ADDR 030H
+    #define IIC_SDA_PU  PAPU.1
+    #define IIC_SCL_PU  PCPU.3
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define SIME    I2CE
+    #define SIMF    I2CF
+
+ENDIF
+
+;................................
+IFDEF   _BS66F360_
+    #define IIC_INT_ADDR 020H       ;MFI2
+    #define IIC_SDA_PU  PBPU.0
+    #define IIC_SCL_PU  PBPU.1
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS66F350_
+    #define IIC_INT_ADDR 020H       ;MFI2
+    #define IIC_SDA_PU  PBPU.0
+    #define IIC_SCL_PU  PBPU.1
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS66F340_
+    #define IIC_INT_ADDR 020H       ;MFI2
+    #define IIC_SDA_PU  PBPU.0
+    #define IIC_SCL_PU  PBPU.1
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS67F360_
+    #define IIC_INT_ADDR 020H       ;MFI2
+    #define IIC_SDA_PU  PBPU.0
+    #define IIC_SCL_PU  PBPU.1
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS67F350_
+    #define IIC_INT_ADDR 020H       ;MFI2
+    #define IIC_SDA_PU  PBPU.0
+    #define IIC_SCL_PU  PBPU.1
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS67F340_
+    #define IIC_INT_ADDR 020H       ;MFI2
+    #define IIC_SDA_PU  PBPU.0
+    #define IIC_SCL_PU  PBPU.1
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS66FV340_
+    #define IIC_INT_ADDR 02CH       ;MFI3
+    #define IIC_SDA_PU  PAPU.6
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+
+;................................
+IFDEF   _BS66FV350_
+    #define IIC_INT_ADDR 02CH       ;MFI3
+    #define IIC_SDA_PU  PAPU.6
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+;................................
+IFDEF   _BS66FV360_
+    #define IIC_INT_ADDR 02CH       ;MFI3
+    #define IIC_SDA_PU  PAPU.6
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+
+    IFDEF MF2E
+    	#define MFI2E	MF2E
+    ENDIF
+ENDIF
+
+
+;................................
+IFDEF   _BS86C16A_
+    #define IIC_INT_ADDR 024H
+    #define IIC_SDA_PU  PAPU.3
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+ENDIF
+IFDEF   _BS86D20A_
+    #define IIC_INT_ADDR 024H
+    #define IIC_SDA_PU  PAPU.3
+    #define IIC_SCL_PU  PAPU.7
+
+    #define MP1     MP1L
+    #define BP      MP1H
+    #define I2CTOC  SIMTOC
+    #define I2CTOF  SIMTOF
+    #define RNIC    IAMWU
+ENDIF
+;................................
+
+
+;................................
+IFNDEF  IIC_INT_ADDR
+    ERRmessage  'MCU Not supported'
+ENDIF
+
+;==========================================================
+
+CHECK_SIMF	MACRO
+	ifdef   _BS45FH21_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS66F340_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS66F350_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS66F360_
+		SNZ	SIMF
+		RETI
+	ENDIF
+
+	ifdef   _BS67F340_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS67F350_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS67F360_
+		SNZ	SIMF
+		RETI
+	ENDIF
+
+	ifdef   _BS66FV340_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS66FV350_
+		SNZ	SIMF
+		RETI
+	ENDIF
+	ifdef   _BS66FV360_
+		SNZ	SIMF
+		RETI
+	ENDIF
+		ENDM
+
+
+
+
+
+
+
+
+
+INIT_IIC_IO	MACRO
+	ifdef   _BS45FH21_
+		SET     MFI2E
+		;-RE-MAP
+		LSET    IFS.4
+		LSET    IFS.2
+
+		;--
+		LSET    PAS0.3      ;PA1 IIC SDA1
+		LCLR    PAS0.2
+		;--
+		LSET    PCS0.7      ;PC3 IIC SCL1
+		LCLR    PCS0.6
+		;--
+		SET     IICEN
+		SET     I2CDBNC1
+	endif
+
+	ifdef   _BS66F340_
+		SET     MFI2E
+		;--
+		LSET    PBS0.0      ;PB0 IIC SDA
+		LCLR    PBS0.1
+		;--
+		LSET    PBS0.2      ;PB1 IIC SCL
+		LCLR    PBS0.3
+	endif
+	ifdef   _BS66F350_
+		SET     MFI2E
+		;--
+		LSET    PBS0.0      ;PB0 IIC SDA
+		LCLR    PBS0.1
+		;--
+		LSET    PBS0.2      ;PB1 IIC SCL
+		LCLR    PBS0.3
+	endif
+	ifdef   _BS66F360_
+		SET     MFI2E
+		;--
+		LSET    PBS0.0      ;PB0 IIC SDA
+		LCLR    PBS0.1
+		;--
+		LSET    PBS0.2      ;PB1 IIC SCL
+		LCLR    PBS0.3
+	endif
+
+	ifdef   _BS67F340_
+		SET     MFI2E
+		;--
+		LSET    PBS0.0      ;PB0 IIC SDA
+		LCLR    PBS0.1
+		;--
+		LSET    PBS0.2      ;PB1 IIC SCL
+		LCLR    PBS0.3
+	endif
+	ifdef   _BS67F350_
+		SET     MFI2E
+		;--
+		LSET    PBS0.0      ;PB0 IIC SDA
+		LCLR    PBS0.1
+		;--
+		LSET    PBS0.2      ;PB1 IIC SCL
+		LCLR    PBS0.3
+	endif
+	ifdef   _BS67F360_
+		SET     MFI2E
+		;--
+		LSET    PBS0.0      ;PB0 IIC SDA
+		LCLR    PBS0.1
+		;--
+		LSET    PBS0.2      ;PB1 IIC SCL
+		LCLR    PBS0.3
+	endif
+
+
+
+	ifdef   _BS66FV340_
+		SET     MFI3E
+		;--
+		LSET    PAS1.6      ;PA7 IIC SDA
+		LCLR    PAS1.7
+		;--
+		LSET    PAS1.4      ;PA6 IIC SCL
+		LCLR    PAS1.5
+	endif
+
+	ifdef   _BS66FV350_
+		SET     MFI3E
+		;--
+		LSET    PAS1.6      ;PA7 IIC SDA
+		LCLR    PAS1.7
+		;--
+		LSET    PAS1.4      ;PA6 IIC SCL
+		LCLR    PAS1.5
+	endif
+	ifdef   _BS66FV360_
+		SET     MFI3E
+		;--
+		LSET    PAS1.6      ;PA7 IIC SDA
+		LCLR    PAS1.7
+		;--
+		LSET    PAS1.4      ;PA6 IIC SCL
+		LCLR    PAS1.5
+	endif
+		ENDM
+
+
+

@@ -1,0 +1,1818 @@
+
+message '*********************************************************************************************'
+message '*PROJECT NAME :MAIN PROGRAM varies define with different MCU                                *'
+message '*REMARK       :20140411 add BS45FH21                                                        *'
+message '*             :20140415 add BS66F360                                                        *'
+message '*             :20140416 add BS84B06A                                                        *'
+message '*             :20140422 add BS83A02A                                                        *'
+message '*             :20140507 add BS66F350                                                        *'
+message '*             :20140520 add BS84D20A ; BS84C16A                                             *'
+message '*             :20140620 add BS67F360                                                        *'
+message '*             :20141014 add BS82B12A                                                        *'
+message '*             :20141023 add BS66F340 ; BS67F340 ; BS67F350                                  *'
+message '*             :20141106 BS66,BS67 SCC 7~5=0                                                 *'
+message '*             :20141121 BS66FV340,BS66FV350,BS66FV360,BS86C16A,BS86D20A                     *'
+message '*             :20141226 MCU_HARDWARE_INITIAL SCC 7~5=0                                      *'
+message '*             :20141229 Fix BS66FV360,BS67F340                                                      *'
+message '*********************************************************************************************'
+                ;================================================
+                ;=Compatable with old MAIN_PROGRAM.ASM version  =
+                ;================================================
+                ;=Define IC Body
+                ifdef   BS83A04A
+                    ifndef  _BS83A04A_
+                    #define _BS83A04A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS83B08A
+                    ifndef  _BS83B08A_
+                    #define _BS83B08A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS83B12A
+                    ifndef  _BS83B12A_
+                    #define _BS83B12A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS83B16A
+                    ifndef  _BS83B16A_
+                    #define _BS83B16A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS84B08A
+                    ifndef  _BS84B08A_
+                    #define _BS84B08A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS84C12A
+                    ifndef  _BS84C12A_
+                    #define _BS84C12A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS82B16
+                    ifndef  _BS82B16_
+                    #define _BS82B16_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS82B12A
+                    ifndef  _BS82B12A_
+                    #define _BS82B12A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS82C16A
+                    ifndef  _BS82C16A_
+                    #define _BS82C16A_
+                    endif
+                endif
+                ;----------------------
+                ifdef   BS82D20A
+                    ifndef  _BS82D20A_
+                    #define _BS82D20A_
+                    endif
+                endif
+                ;----------------------
+
+
+
+
+                ;========================================
+                ;= IC body define check     =============
+                ;========================================
+                ifdef   _BS83A02A_
+                    #define ICdefined
+                    #define ESCpowerIDcheck
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  2
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS83A04A_
+                    #define ICdefined
+                    #define ESCpowerIDcheck
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  4
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS83B08A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  8
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS83B12A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  12
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS83B16A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  16
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS84B06A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  6
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS84B08A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  8
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS84C12A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  12
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS84C16A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  16
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS84D20A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  20
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS82B12A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  12
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS82C16A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  16
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS82D20A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  20
+                    endif
+                endif
+                ;----------------------
+                ifdef   _BS45FH21_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  8
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS66F340_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  12
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS66F350_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  20
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS66F360_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  28
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS67F340_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  16
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS67F350_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  20
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS67F360_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  28
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+
+               ifdef   _BS66FV340_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  20
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+
+               ifdef   _BS66FV350_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  24
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+               ifdef   _BS66FV360_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  28
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS86C16A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  16
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+                ifdef   _BS86D20A_
+                    #define ICdefined
+                    ;--
+                    ifndef  TouchKeyAmount
+                    #define TouchKeyAmount  20
+                    endif
+                    ;--
+                    #define BP      MP1H
+                    #define MP1     MP1L
+                endif
+                ;----------------------
+
+                ifndef  ICdefined
+                        errmessage 'MCU not support with MAIN_PROGRAM'
+                endif
+
+
+
+
+
+
+
+
+                ;========================================
+                ;= MACRO define for MCU hardware initial=
+                ;========================================
+                .LISTMACRO
+                MCU_HARDWARE_INITIAL    MACRO
+                ;--------------------------------
+                ;-INITIAL FOR BS83A02A  ---------
+                ;--------------------------------
+                ifdef   _BS83A02A_
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK0 060H~0FFH
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS83A04A  ---------
+                ;--------------------------------
+                ifdef   _BS83A04A_
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK0 060H~0FFH
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83B08A  ---------
+                ;--------------------------------
+                ifdef   _BS83B08A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK0 060H~0FFH
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83B12A  ---------
+                ;--------------------------------
+                ifdef   _BS83B12A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK1 080H~0FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 060H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83B16A  ---------
+                ;--------------------------------
+                ifdef   _BS83B16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK1 080H~0FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 060H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84B06A  ---------
+                ;--------------------------------
+                ifdef   _BS84B06A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK1 080H~0FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 060H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84B08A  ---------
+                ;--------------------------------
+                ifdef   _BS84B08A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK1 080H~0FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 060H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84C12A  ---------
+                ;--------------------------------
+                ifdef   _BS84C12A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK2 280H~2DFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 060H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS84C16A  ---------
+                ;--------------------------------
+                ifdef   _BS84C16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84D20A  ---------
+                ;--------------------------------
+                ifdef   _BS84D20A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82B16   ---------
+                ;--------------------------------
+                ifdef   _BS82B16_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82B12A  ---------
+                ;--------------------------------
+                ifdef   _BS82B12A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82C16A  ---------
+                ;--------------------------------
+                ifdef   _BS82C16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82D20A  ---------
+                ;--------------------------------
+                ifdef   _BS82D20A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS45FH21  ---------
+                ;--------------------------------
+                ifdef   _BS45FH21_
+
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK7 780H~7FFH
+                        MOV     A,7
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 680H~6FFH
+                        MOV     A,6
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+ 	      ;--------------------------------
+                ;-INITIAL FOR BS66F340  ---------
+                ;--------------------------------
+                ifdef   _BS66F340_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66F350  ---------
+                ;--------------------------------
+                ifdef   _BS66F350_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66F360  ---------
+                ;--------------------------------
+                ifdef   _BS66F360_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK7 780H~7FFH
+                        MOV     A,7
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 680H~6FFH
+                        MOV     A,6
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS67F340  ---------
+                ;--------------------------------
+                ifdef   _BS67F340_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS67F350  ---------
+                ;--------------------------------
+                ifdef   _BS67F350_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS67F360  ---------
+                ;--------------------------------
+                ifdef   _BS67F360_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK7 780H~7FFH
+                        MOV     A,7
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 680H~6FFH
+                        MOV     A,6
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,60H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66FV340  ---------
+                ;--------------------------------
+                ifdef   _BS66FV340_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;;;;;;-CLEAR BANK7 780H~7FFH
+                        ;;;;;MOV     A,7
+                        ;;;;;MOV     BP,A
+                        ;;;;;MOV     A,80H
+                        ;;;;;CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 680H~6FFH
+                        MOV     A,6
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;;;;;;-CLEAR BANK4 480H~2FFH
+                        ;;;;;MOV     A,4
+                        ;;;;;MOV     BP,A
+                        ;;;;;MOV     A,80H
+                        ;;;;;CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66FV350  ---------
+                ;--------------------------------
+                ifdef   _BS66FV350_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;;;;;;-CLEAR BANK7 780H~7FFH
+                        ;;;;;MOV     A,7
+                        ;;;;;MOV     BP,A
+                        ;;;;;MOV     A,80H
+                        ;;;;;CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 680H~6FFH
+                        MOV     A,6
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66FV360  ---------
+                ;--------------------------------
+                ifdef   _BS66FV360_
+
+                        ;CLR     SCC
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-CLEAR BANK7 780H~7FFH
+                        MOV     A,7
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 680H~6FFH
+                        MOV     A,6
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS86C16A  ---------
+                ;--------------------------------
+                ifdef   _BS86C16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS86D20A  ---------
+                ;--------------------------------
+                ifdef   _BS86D20A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B)
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                        ;-WDT INITIAL USE 125/500MS WHEN ENABLE POWER SAVE MODE
+                      ;;MOV     A,01010011B     ;500   MS
+                        MOV     A,01010010B     ;125   MS
+                        MOV     WDTC,A
+                        ;-IF POWER SAVING MODE ENABLE
+                        if      PowerSave==1
+                        SZ      TO
+                        JMP     WDT_WAKEUP      ;IF WAKEUP BY WDT TIME OUT
+                        endif
+                        ;-DISABLE ADC
+                        CLR     ACERL
+                        MOV     A,01100000B
+                        MOV     ADCR0,A
+                        CLR     ADCR1
+                        ;-CLEAR BANK5 580H~2FFH
+                        MOV     A,5
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK4 480H~2FFH
+                        MOV     A,4
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK3 380H~2FFH
+                        MOV     A,3
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK2 280H~2FFH
+                        MOV     A,2
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK1 180H~1FFH
+                        MOV     A,1
+                        MOV     BP,A
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                        ;-CLEAR BANK0 080H~0FFH
+                        CLR     BP
+                        MOV     A,80H
+                        CALL    CLEAR_RAM
+                endif
+
+
+
+
+                ENDM
+
+
+
+                ;========================================
+                ;= MACRO define for SYSTEM CLOCK reload =
+                ;========================================
+                RELOAD_SYS_CLOCK    MACRO
+                ;--------------------------------
+                ;-INITIAL FOR BS83A02A  ---------
+                ;--------------------------------
+                ifdef   _BS83A02A_
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+
+                endif
+
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83A04A  ---------
+                ;--------------------------------
+                ifdef   _BS83A04A_
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83B08A  ---------
+                ;--------------------------------
+                ifdef   _BS83B08A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83B12A  ---------
+                ;--------------------------------
+                ifdef   _BS83B12A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS83B16A  ---------
+                ;--------------------------------
+                ifdef   _BS83B16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84B06A  ---------
+                ;--------------------------------
+                ifdef   _BS84B06A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                      ;;MOV     A,(SystemClock<<4)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84B08A  ---------
+                ;--------------------------------
+                ifdef   _BS84B08A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84C12A  ---------
+                ;--------------------------------
+                ifdef   _BS84C12A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84C16A  ---------
+                ;--------------------------------
+                ifdef   _BS84C16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS84D20A  ---------
+                ;--------------------------------
+                ifdef   _BS84D20A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82B16   ---------
+                ;--------------------------------
+                ifdef   _BS82B16_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)^00110000B)&00110000B
+                        MOV     CTRL,A
+                        ;--
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82B12A  ---------
+                ;--------------------------------
+                ifdef   _BS82B12A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82C16A  ---------
+                ;--------------------------------
+                ifdef   _BS82C16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS82D20A  ---------
+                ;--------------------------------
+                ifdef   _BS82D20A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS45FH21  ---------
+                ;--------------------------------
+                ifdef   _BS45FH21_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        SET     HIRCEN
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66F340  ---------
+                ;--------------------------------
+                ifdef   _BS66F340_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS66F350  ---------
+                ;--------------------------------
+                ifdef   _BS66F350_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS66F360  ---------
+                ;--------------------------------
+                ifdef   _BS66F360_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS67F340  ---------
+                ;--------------------------------
+                ifdef   _BS67F340_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS67F350  ---------
+                ;--------------------------------
+                ifdef   _BS67F350_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS67F360  ---------
+                ;--------------------------------
+                ifdef   _BS67F360_
+                        ;CLR     SCC             ;FH=Fsys/1
+                        MOV	A,00011111B
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS66FV340  ---------
+                ;--------------------------------
+                ifdef   _BS66FV340_
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS66FV350  ---------
+                ;--------------------------------
+                ifdef   _BS66FV350_
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+                ;--------------------------------
+                ;-INITIAL FOR BS66FV360  ---------
+                ;--------------------------------
+                ifdef   _BS66FV360_
+                        MOV	A,00011111B	;FH=Fsys/1
+                        ANDM	A,SCC
+                        MOV     A,((SystemClock<<2)&00001100B)|00000001B
+                        MOV     HIRCC,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS86C16A  ---------
+                ;--------------------------------
+                ifdef   _BS86C16A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ;--------------------------------
+                ;-INITIAL FOR BS86D20A  ---------
+                ;--------------------------------
+                ifdef   _BS86D20A_
+                        ;-SET SYSTEM CLOCK
+                        MOV     A,((SystemClock<<4)&00110000B);;|10000000B
+                        MOV     CTRL,A          ;BIT7=FSYSON
+                        ;--                     ;BIT5:BIT4=00/11:8MHZ ; 01:12MHZ ; 10:16MHZ
+                        MOV     A,00000011B
+                        MOV     SMOD,A
+                endif
+
+                ENDM
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+
+;;****************************************************** 
+;;***** MAIN PROGRAM EXTERNAL REFERENCE FOR ASM CODE   * 
+;;****************************************************** 
+EXTERN  _LOAD_TKS_GLOBE_VARIES              :NEAR   ;Load TKS varies
+EXTERN  _LOAD_HXT_REFERENCE                 :NEAR   ;Load HXT varies
+
+
+
+
+
+
+
+
+
+
+

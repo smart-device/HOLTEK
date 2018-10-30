@@ -1,0 +1,139 @@
+"File: startup1_l.asm  Assembler  Version HGASM0202      Page 1
+
+
+   1  0000              ;;--------------------------------------------------------------;;
+   2  0000              ;;    This file is part of the Holtek C Compiler V3 package     ;;
+   3  0000              ;;    For the initialization of static linkage variables        ;;
+   4  0000              ;;    Copyright (C) 2017 Holtek Semiconductor Inc.              ;;
+   5  0000              ;;    Version: 1.07 (Above IDE3000 V7.94)                       ;;
+   6  0000              ;;    Date:    2017/03/06                                        ;;
+   7  0000              ;;--------------------------------------------------------------;;
+   8  0000              
+   9  0000              acc equ [05h]
+  10  0000              tblp equ [07h]
+  11  0000              tblh equ [08h]
+  12  0000              ;;tbhp equ [09h] 
+  13  0000              r0 equ [00h]
+  14  0000              mp0 equ [01h]
+  15  0000              r1 equ [02h]
+  16  0000              mp1l equ [03h]
+  17  0000              mp1h equ [04h]
+  18  0000              z equ [0ah].2
+  19  0000              c equ [0ah].0
+  20  0000              
+  21  0000              ifndef tbhp
+  22  0000              tbhp equ [09h]
+  23  0000              endif
+  24  0000               
+  25  0000              extern startup_value_1:near
+  26  0000              
+  27  0000              @start .section 'code'
+  28  0000              begin_startup_value:
+  29  0000  0F00     E    mov a,low (offset startup_value_1) 
+  30  0001  0087          mov tblp,a
+  31  0002  0F00     E    mov a,high (offset startup_value_1) 
+  32  0003  0089          mov tbhp,a
+  33  0004              next_table:
+  34  0004                ;CLR WDT
+  35  0004  1487          inc tblp
+  36  0005  3D0A          sz z
+  37  0006  1489          inc tbhp
+  38  0007              ifdef USE_TABRDC
+  39  0007                tabrdc mp0
+  40  0007              else
+  41  0007  1D01          tabrd mp0
+  42  0008              endif
+  43  0008  1081          sz mp0
+  44  0009  2800     R    jmp read_data
+  45  000A  2800     R    jmp startupend1
+  46  000B              read_data:
+  47  000B  1487          inc tblp
+  48  000C  3D0A          sz z
+  49  000D  1489          inc tbhp
+  50  000E              ifdef USE_TABRDC
+  51  000E                tabrdc mp1l
+  52  000E              else
+  53  000E  1D03          tabrd mp1l
+  54  000F              endif
+  55  000F  0708          mov a,tblh
+  56  0010  0084          mov mp1h,a
+  57  0011              next_data:
+  58  0011  1487          inc tblp
+  59  0012  3D0A          sz z
+"File: startup1_l.asm  Assembler  Version HGASM0202      Page 2
+
+  60  0013  1489          inc tbhp
+  61  0014              ifdef USE_TABRDC
+  62  0014                tabrdc acc
+  63  0014              else
+  64  0014  1D05          tabrd acc
+  65  0015              endif
+  66  0015  0082          mov r1,a
+  67  0016  1781          sdz mp0
+  68  0017  2800     R    jmp $+2
+  69  0018  2800     R    jmp next_table
+  70  0019  1483          inc mp1l
+  71  001A  0708          mov a,tblh
+  72  001B  0082          mov r1,a
+  73  001C  1483          inc mp1l
+  74  001D  1781          sdz mp0
+  75  001E  2800     R    jmp next_data
+  76  001F  2800     R    jmp next_table
+  77  0020              
+  78  0020              ;end_startup_value:
+  79  0020              
+  80  0020              startupend1:
+  81  0020              ifndef Disable_Bit_Initial
+  82  0020  0F00     R  	MOV A,high  bitdatasec1_start
+  83  0021  0084        	MOV mp1h,a
+  84  0022  0F00     R  	MOV A,offset bitdatasec1_end
+  85  0023  0083        	mov mp1l,A
+  86  0024  1583        	dec mp1l
+  87  0025  350A        	clr z
+  88  0026  0A00     R  	sub a,offset bitdatasec1_start
+  89  0027  3D0A        	sz z
+  90  0028  2800     R  	jmp startupend2
+  91  0029              L0005:
+  92  0029  1F82        	set r1
+  93  002A  1583        	dec mp1l
+  94  002B  1785        	sdz  acc
+  95  002C  2800     R  	jmp L0005
+  96  002D              
+  97  002D              startupend2:
+  98  002D  0F00     R  	MOV A,high  bitdatasec0_start
+  99  002E  0084        	MOV mp1h,a
+ 100  002F  0F00     R  	MOV A,offset bitdatasec0_end
+ 101  0030  0083        	mov mp1l,A
+ 102  0031  1583        	dec mp1l
+ 103  0032  350A        	clr z
+ 104  0033  0A00     R  	sub a,offset bitdatasec0_start
+ 105  0034  3D0A        	sz  z
+ 106  0035  2800     R  	jmp startupend3
+ 107  0036              L0006:
+ 108  0036  1F02        	clr r1
+ 109  0037  1583        	dec mp1l
+ 110  0038  1785        	sdz  acc
+ 111  0039  2800     R  	jmp L0006
+ 112  003A              startupend3:
+ 113  003A              endif		
+ 114  003A                 
+ 115  0000              @ROMDATA_BASE .SECTION com_l 'CODE'  
+ 116  0000              startup_value:
+ 117  0000              ;;linker range the initial value table here
+ 118  0000              
+ 119  0000              @BITDATASEC1 .SECTION com_l 'DATA'  
+"File: startup1_l.asm  Assembler  Version HGASM0202      Page 3
+
+ 120  0000              bitdatasec1_start:
+ 121  0000              
+ 122  0000              @BITDATASEC1 .SECTION com_e 'DATA'  
+ 123  0000              bitdatasec1_end:
+ 124  0000              
+ 125  0000              @BITDATASEC .SECTION com_l 'DATA'  
+ 126  0000              bitdatasec0_start:
+ 127  0000              
+ 128  0000              @BITDATASEC .SECTION com_e 'DATA'  
+ 129  0000              bitdatasec0_end:
+
+
+        0 Errors, 0

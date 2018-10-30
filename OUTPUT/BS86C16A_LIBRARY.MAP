@@ -1,0 +1,128 @@
+
+Linker Version 8.7.3.170508
+Input Object File: C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\MAIN_PROGRAM_V102.OBJ
+Input Object File: C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ
+Input Object File: C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\USER_PROGRAM.OBJ
+Input Object File: C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\STARTUP1_L.OBJ
+
+Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.95\LIB\LIBHOLTEKGCC.LIB
+Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.95\LIB\v3_lmrsc.lib
+
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+     00h     0000h     0003h    0004h      CODE               PROGRAM_ENTRY (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\MAIN_PROGRAM_V102.OBJ)
+     00h     0004h     0004h    0001h      CODE               @Interrupt_External_code (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\USER_PROGRAM.OBJ)
+     00h     0005h     0007h    0003h      CODE               _USER_PROGRAM_INITIAL (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\USER_PROGRAM.OBJ)
+     00h     0008h     0008h    0001h      CODE               TOUCH_INT (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     00h     0009h     0009h    0001h      CODE               LIBRARY_VERSION (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     00h     000ch     000fh    0004h      CODE               TIME_BASE_INT (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     00h     0010h     007ah    006bh      CODE               MAIN_PROGRAM (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\MAIN_PROGRAM_V102.OBJ)
+     00h     007bh     054dh    04d3h      CODE               TKS_LIBRARY_CODE (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     00h     054eh     055bh    000eh      CODE               _USER_PROGRAM (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\USER_PROGRAM.OBJ)
+     00h     0080h     00adh    002eh      DATA     0.4782    TKS_LIBRARY_DATA0 (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     00h     00aeh     00afh    0002h      DATA     3         MAIN_DATA (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\MAIN_PROGRAM_V102.OBJ)
+     01h     0080h     00afh    0030h      DATA     0         TKS_LIBRARY_DATA1 (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     02h     0080h     00bfh    0040h      DATA     0         TKS_LIBRARY_DATA2 (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+     03h     0080h     00bfh    0040h      DATA     0         TKS_LIBRARY_DATA3 (C:\Users\bhg10\AppData\Local\Temp\BS86C16A_LIBV413.OBJ)
+
+     Local Sections
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+
+     Indepentent Local Sections
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+     02h     00c0h     00c0h    0000h      ILOCAL   0         _USER_PROGRAM_INITIAL (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\USER_PROGRAM.OBJ)
+     02h     00c0h     00c0h    0001h      ILOCAL   3         _USER_PROGRAM (C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\USER_PROGRAM.OBJ)
+
+     Public Symbols Information
+     Address            Public by Name
+     00adh[3]           _ANY_KEY_PRESSF
+     007bh              _BS86C16A_LIBV413
+     011ch              _BS86C16A_LIBV413_INITIAL
+     01a8h              _CHECK_KEY_WAKEUP
+     0093h              _DATA_BUF
+     00adh[0]           _FORCE_CALIBRATEF
+     0536h              _GET_ENV_VALUE
+     052ch              _GET_KEY_AMOUNT
+     052eh              _GET_KEY_BITMAP
+     0527h              _GET_LIB_VER
+     0533h              _GET_RCC_VALUE
+     0539h              _GET_REF_VALUE
+     0080h              _GLOBE_VARIES
+     0004h              _Interrupt_External
+     00a0h              _KEY_DATA
+     009eh              _KEY_IO_SEL
+     0280h              _KEY_REF
+     0180h              _KEY_STATUS
+     011ch              _LIBRARY_RESET
+     0050h              _LOAD_HXT_REFERENCE
+     0050h              _LOAD_TKS_GLOBE_VARIES
+     009bh              _SAMPLE_TIMES
+     00adh[2]           _SCAN_CYCLEF
+     009ch              _STANDBY_TIME
+     00adh[5]           _TKS_250MSF
+     00adh[6]           _TKS_500MSF
+     00adh[4]           _TKS_63MSF
+     00adh[1]           _TKS_ACTIVEF
+     00adh              _TKS_FLAGA
+     009dh              _TKS_TIME_BASE
+     054eh              _USER_PROGRAM
+     0005h              _USER_PROGRAM_INITIAL
+
+     Address            Public by Value
+     0004h              _Interrupt_External
+     0005h              _USER_PROGRAM_INITIAL
+     0050h              _LOAD_TKS_GLOBE_VARIES
+     0050h              _LOAD_HXT_REFERENCE
+     007bh              _BS86C16A_LIBV413
+     0080h              _GLOBE_VARIES
+     0093h              _DATA_BUF
+     009bh              _SAMPLE_TIMES
+     009ch              _STANDBY_TIME
+     009dh              _TKS_TIME_BASE
+     009eh              _KEY_IO_SEL
+     00a0h              _KEY_DATA
+     00adh              _TKS_FLAGA
+     011ch              _LIBRARY_RESET
+     011ch              _BS86C16A_LIBV413_INITIAL
+     0180h              _KEY_STATUS
+     01a8h              _CHECK_KEY_WAKEUP
+     0280h              _KEY_REF
+     0527h              _GET_LIB_VER
+     052ch              _GET_KEY_AMOUNT
+     052eh              _GET_KEY_BITMAP
+     0533h              _GET_RCC_VALUE
+     0536h              _GET_ENV_VALUE
+     0539h              _GET_REF_VALUE
+     054eh              _USER_PROGRAM
+     00adh[0]           _FORCE_CALIBRATEF
+     00adh[1]           _TKS_ACTIVEF
+     00adh[2]           _SCAN_CYCLEF
+     00adh[3]           _ANY_KEY_PRESSF
+     00adh[4]           _TKS_63MSF
+     00adh[5]           _TKS_250MSF
+     00adh[6]           _TKS_500MSF
+
+
+ROM Usage Statistics
+     Size      Used     Percentage
+     1000h     055ah    33%
+
+RAM Usage Statistics
+    Bank      Size      Used     Percentage
+     00h       0080h     0030h    37%
+     01h       0080h     0030h    37%
+     02h       0080h     0041h    50%
+     03h       0080h     0040h    50%
+     Total     0200h     00e1h    43%
+
+Use Stack Count
+_USER_PROGRAM: 0
+
+Call Tree
+    _USER_PROGRAM
+
+HLINK: Program entry point at section 'PROGRAM_ENTRY' (address 0) of file 'C:\DATA\EDDY\F\Library\Library程穝\BS86\BS86C16A_20150319_LIBV413\20150319_LIBV413\OUTPUT\MAIN_PROGRAM_V102.OBJ'
+
+Total 0 error(s), Total 0 Warning(s)

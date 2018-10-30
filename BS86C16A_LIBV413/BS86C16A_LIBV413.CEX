@@ -1,0 +1,100 @@
+
+//*************************************************
+//***** LIBRARY EXTERNAL REFERENCE FOR C CODE     *
+//*************************************************
+//;-SUBROUTIN
+extern  void    BS86C16A_LIBV413_INITIAL();             //;library initial
+extern  void    BS86C16A_LIBV413();                     //;scan all touch input
+extern  void    LIBRARY_RESET();                        //;Library Reset
+extern  void    GET_KEY_BITMAP();                       //;get key status with level
+extern  void    GET_ENV_VALUE();                        //;get environment value
+extern  void    GET_REF_VALUE();                        //;get reference value
+extern  void    GET_RCC_VALUE();                        //;get internal CAP. value
+extern  void    GET_LIB_VER();                          //;get library version
+extern  void    GET_KEY_AMOUNT();                       //;get key amount value
+extern  void    CHECK_KEY_WAKEUP();                     //;get key amount value
+
+#ifdef  _CCV3_
+//;-FLAG DEFINE IN BANK0 FOR C Compiler V3
+//;-DATA DEFINE
+//;-DEFINE BANK0 RAM
+extern  unsigned char   TKS_TIME_BASE;                  //;
+extern  unsigned char   SAMPLE_TIMES;                   //;
+extern  unsigned char   STANDBY_TIME;                   //;
+extern  unsigned char   DATA_BUF[8];                    //;temperary data RAM
+extern  unsigned char   GLOBE_VARIES[];                 //;globe varies which define in HXT_REFERENCE.INC
+extern  unsigned char   KEY_IO_SEL[];                   //;
+extern  unsigned char   KEY_DATA[];                     //;
+
+typedef struct {
+        unsigned char b0 : 1;
+        unsigned char b1 : 1;
+        unsigned char b2 : 1;
+        unsigned char b3 : 1;
+        unsigned char b4 : 1;
+        unsigned char b5 : 1;
+        unsigned char b6 : 1;
+        unsigned char b7 : 1;
+} _FLAG_bits;
+
+typedef union {
+        _FLAG_bits bits;
+        unsigned char   byte;
+}_TKS_FLAGA_type;
+
+extern _TKS_FLAGA_type      TKS_FLAGA;
+
+#define FORCE_CALIBRATEF    TKS_FLAGA.bits.b0
+#define TKS_ACTIVEF         TKS_FLAGA.bits.b1
+#define SCAN_CYCLEF         TKS_FLAGA.bits.b2
+#define ANY_KEY_PRESSF      TKS_FLAGA.bits.b3
+#define TKS_63MSF           TKS_FLAGA.bits.b4
+#define TKS_250MSF          TKS_FLAGA.bits.b5
+#define TKS_500MSF          TKS_FLAGA.bits.b6
+
+//;=============================================
+#else
+//;-_CCV2_
+//;-DATA DEFINE
+//;-DEFINE BANK0 RAM
+#pragma rambank0
+extern  unsigned char   TKS_TIME_BASE;                  //;
+extern  unsigned char   SAMPLE_TIMES;                   //;
+extern  unsigned char   STANDBY_TIME;                   //;
+extern  unsigned char   DATA_BUF[8];                    //;temperary data RAM
+extern  unsigned char   GLOBE_VARIES[];                 //;globe varies which define in HXT_REFERENCE.INC
+extern  unsigned char   KEY_IO_SEL[];                   //;
+extern  unsigned char   KEY_DATA[];                     //;
+
+//;-FLAG DEFINE IN BANK0 FOR C Compiler V2
+extern  bit     SCAN_CYCLEF;                    //;scan one cycle flag
+extern  bit     ANY_KEY_PRESSF;                 //;any key pressed flag
+extern  bit     TKS_ACTIVEF;                    //;library running
+extern  bit     TKS_63MSF;                      //;63ms time flag
+extern  bit     TKS_250MSF;                     //;250ms time flag
+extern  bit     TKS_500MSF;                     //;500ms time flag
+extern  bit     FORCE_CALIBRATEF;               //;force all key re-calibrate flag
+
+//;-DEFINE OTHER BANK RAM
+#pragma norambank
+extern  unsigned char   KEY_REF[];              //;key Reference data RAM
+extern  unsigned char   KEY_STATUS[];           //;
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

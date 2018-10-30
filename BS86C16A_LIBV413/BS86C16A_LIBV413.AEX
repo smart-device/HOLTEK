@@ -1,0 +1,50 @@
+
+;;*************************************************
+;;***** LIBRARY EXTERNAL REFERENCE FOR ASM CODE   *
+;;*************************************************
+;-SUBROUTIN
+EXTERN  _BS86C16A_LIBV413_INITIAL       :NEAR   ;library initial
+EXTERN  _BS86C16A_LIBV413               :NEAR   ;scan all touch input
+EXTERN  _LIBRARY_RESET                  :NEAR   ;library reset
+EXTERN  _GET_KEY_BITMAP                 :NEAR   ;get key status with level
+EXTERN  _GET_ENV_VALUE                  :NEAR   ;get environment value
+EXTERN  _GET_REF_VALUE                  :NEAR   ;get reference value
+EXTERN  _GET_RCC_VALUE                  :NEAR   ;get internal CAP. value
+EXTERN  _GET_LIB_VER                    :NEAR   ;get library version
+EXTERN  _GET_KEY_AMOUNT                 :NEAR   ;get key amount value
+EXTERN  _CHECK_KEY_WAKEUP               :NEAR   ;get key amount value
+
+;-DATA DEFINE
+EXTERN  _DATA_BUF                       :BYTE   ;temperary data RAM
+EXTERN  _GLOBE_VARIES                   :BYTE   ;globe varies which define in HXT_REFERENCE.INC
+EXTERN  _KEY_REF                        :BYTE   ;key Reference data RAM
+EXTERN  _KEY_STATUS                     :BYTE   ;
+EXTERN  _TKS_TIME_BASE                  :BYTE   ;
+EXTERN  _STANDBY_TIME                   :BYTE   ;
+EXTERN  _KEY_IO_SEL                     :BYTE   ;
+EXTERN  _SAMPLE_TIMES                   :BYTE   ;
+EXTERN  _KEY_DATA                       :BYTE   ;
+
+;-FLAG DEFINE
+EXTERN  _SCAN_CYCLEF                    :BIT    ;scan one cycle flag
+EXTERN  _ANY_KEY_PRESSF                 :BIT    ;any key pressed flag
+EXTERN  _TKS_ACTIVEF                    :BIT    ;library running
+EXTERN  _TKS_63MSF                      :BIT    ;63ms time flag
+EXTERN  _TKS_250MSF                     :BIT    ;250ms time flag
+EXTERN  _TKS_500MSF                     :BIT    ;500ms time flag
+EXTERN  _FORCE_CALIBRATEF               :BIT    ;force all key re-calibrate flag
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
